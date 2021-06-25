@@ -1,4 +1,4 @@
-#gameMenu {
+.gameMenu {
     padding: 16px;
     display: block;
     border: 2px solid black;
@@ -10,7 +10,7 @@
     float: right;
 }
 
-#gameMenu span:hover {
+.gameMenu span:hover {
     color: #351d96;
     cursor: pointer;
 }

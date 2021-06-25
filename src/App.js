@@ -1,23 +1,34 @@
 import "./App.css";
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 
 
-import {SettingsPanel} from "./components/mine_sweeper/settings_panel/settings_panel.js";
-import {GameMenu} from "./components/mine_sweeper/game_menu/game_menu";
-
-
-export const Settings = React.createContext();
+import {SettingsPanel} from "./components/mineSweeper/settingsPanel/settingsPanel.js";
+import {GameMenu} from "./components/mineSweeper/gameMenu/gameMenu";
+import {generateId} from "./utils/idGenerator";
 
 
 function App() {
-    const [context, setContext] = useState({boardHeight: 7, difficultyLevel: "easy", boardWidth: 7});
+    const [boardSize, setBoardSize] = useState({boardHeight: 7, boardWidth: 7});
+    const [difficultyLevel, setDifficultyLevel] = useState("easy");
+    const boardId = useMemo(() => generateId(), [])
+    const [board, buildBoard] = useState(false);
     return (
-        <Settings.Provider value={[context, setContext]}>
-            <div id="app">
-                <SettingsPanel /> <GameMenu label="retry" />
-                <div id="board"></div>
-            </div>
-        </Settings.Provider>);
+            <div className="app">
+                <SettingsPanel
+                    boardSize={boardSize}
+                    setBoardSize={setBoardSize}
+                    difficultyLevel={difficultyLevel}
+                    setDifficultyLevel={setDifficultyLevel}/>
+                <GameMenu
+                    label="retry"
+                    buildBoard={buildBoard}
+                    boardSize={boardSize}
+                    difficultyLevel={difficultyLevel}
+                />
+                <div id={boardId}>
+                    {board}
+                </div>
+            </div>);
 }
 
 export default App;

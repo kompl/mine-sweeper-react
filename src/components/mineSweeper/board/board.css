@@ -1,0 +1,44 @@
+table {
+    color: #3b1e1e;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%)
+}
+
+.tile {
+    border: 2px double #bab3b3;
+    background-color: #e4ffde;
+    width: 80px;
+    height: 80px;
+    font-size: 1.5vw;
+    animation: pulsing 2s infinite;
+    opacity: 85%;
+    cursor: pointer;
+}
+.tile.unturned {
+    animation: pulsing 2s infinite;
+}
+
+.tile.turned {
+    transition: background-color 300ms cubic-bezier(0, 0, 1, 1);
+    animation: none;
+}
+
+.tile.turned label {
+    text-align: center;
+}
+
+@keyframes pulsing {
+    0% {
+        transform: scale(0.95, 0.95)
+    }
+    50% {
+        transform: scale(1.0, 1.0);
+    }
+    100% {
+        transform: scale(0.95, 0.95);
+    }
+}

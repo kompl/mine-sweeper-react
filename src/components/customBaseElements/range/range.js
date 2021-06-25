@@ -1,13 +1,11 @@
 import './range.css'
-import {useContext} from "react";
-import {Settings} from "../../../App";
+
 
 export function Range(props) {
-    const [context, setContext] = useContext(Settings);
     const handleChangeRange = e => {
-        let newValue = context
+        let newValue = props.boardSize
         newValue[props.parameter.name] = e.target.value
-        setContext(newValue);
+        props.setBoardSize(newValue);
     };
     return (
         <div className={props.className}>
@@ -17,7 +15,7 @@ export function Range(props) {
                 max={props.parameter.maxValue}
                 min={props.parameter.minValue}
                 type="range"
-                defaultValue={context[props.parameter.name]}
+                defaultValue={props.boardSize[props.parameter.name]}
                 onChange={event => handleChangeRange(event)}
             />
         </div>
