@@ -1,16 +1,14 @@
 import "./App.css";
-import React, {useState, useMemo} from "react";
+import React, {useState} from "react";
 
 
 import {SettingsPanel} from "./components/mineSweeper/settingsPanel/settingsPanel.js";
 import {GameMenu} from "./components/mineSweeper/gameMenu/gameMenu";
-import {generateId} from "./utils/idGenerator";
 
 
 function App() {
     const [boardSize, setBoardSize] = useState({boardHeight: 7, boardWidth: 7});
     const [difficultyLevel, setDifficultyLevel] = useState("easy");
-    const boardId = useMemo(() => generateId(), [])
     const [board, buildBoard] = useState(false);
     return (
             <div className="app">
@@ -25,9 +23,7 @@ function App() {
                     boardSize={boardSize}
                     difficultyLevel={difficultyLevel}
                 />
-                <div id={boardId}>
-                    {board}
-                </div>
+                {board}
             </div>);
 }
 

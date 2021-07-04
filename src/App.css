@@ -10,25 +10,3 @@ label {
   position: relative;
   display: block;
 }
-
-table {
-  color: #3b1e1e;
-  margin: 0 auto;
-  display: block;
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -30%)
-}
-
-td {
-  border: 2px double #bab3b3;
-  background-color: #e4ffde;
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  font-size: 1.5vw;
-  animation: pulsing 2s infinite;
-  opacity: 85%;
-  cursor: pointer;
-}

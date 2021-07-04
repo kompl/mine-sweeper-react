@@ -17,7 +17,9 @@ table {
     animation: pulsing 2s infinite;
     opacity: 85%;
     cursor: pointer;
+    text-align: center;
 }
+
 .tile.unturned {
     animation: pulsing 2s infinite;
 }
@@ -27,8 +29,44 @@ table {
     animation: none;
 }
 
-.tile.turned label {
-    text-align: center;
+.tile.turned[data-danger='0'] {
+    background-color: #286bd1;
+}
+
+.tile.turned[data-danger='1'] {
+    background-color: #7352f7;
+}
+
+.tile.turned[data-danger='2'] {
+    background-color: #7800c2;
+}
+
+.tile.turned[data-danger='3'] {
+    background-color: #b200c2;
+}
+
+.tile.turned[data-danger='4'] {
+    background-color: #c200a2;
+}
+
+.tile.turned[data-danger='5'] {
+    background-color: #c20081;
+}
+
+.tile.turned[data-danger='6'] {
+    background-color: #c20051;
+}
+
+.tile.turned[data-danger='7'] {
+    background-color: #c20024;
+}
+
+.tile.turned[data-danger='8'] {
+    background-color: #330e15;
+}
+
+.tile.turned[data-danger='100'] {
+    background-color: #030001;
 }
 
 @keyframes pulsing {

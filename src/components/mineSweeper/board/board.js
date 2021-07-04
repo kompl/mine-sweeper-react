@@ -1,5 +1,4 @@
-import React, {useMemo, useState, useContext} from "react";
-import {generateId} from "../../../utils/idGenerator";
+import React, {useMemo, useState} from "react";
 import "./board.css";
 
 
@@ -7,19 +6,6 @@ const dangerAreaProportionChoices = {
     easy: 15,
     normal: 40,
     hard: 60
-};
-
-const dangerColor = {
-    0: "#286bd1",
-    1: "#7352f7",
-    2: "#7800c2",
-    3: "#b200c2",
-    4: "#c200a2",
-    5: "#c20081",
-    6: "#c20051",
-    7: "#c20024",
-    8: "#330e15",
-    100: "#030001"
 };
 
 export function Board(props) {
@@ -59,12 +45,11 @@ function Tile(props) {
     const [isTurned, setTurned] = useState(false);
     return (
         <td
-            data-foo={generateId()}
             className={isTurned ? "tile turned" : "tile unturned"}
-            style={isTurned ? {background: dangerColor[danger]} : {}}
+            data-danger={isTurned ? danger : ""}
             onClick={() => setTurned(true)}
         >
-            {isTurned && danger !== 100 ? <p>{danger}</p> : ""}
+            {isTurned && danger !== '100' ? danger : ""}
         </td>
     );
 }
@@ -90,34 +75,18 @@ function getRandomIndex(max) {
 }
 
 function calculateDanger(schema, rowNum, cellNum) {
-    let danger = 0;
     if (schema[rowNum][cellNum] !== 100) {
-        if (cellNum > 0 && schema[rowNum][cellNum - 1] === 100) {
-            danger++;
-        }
-        if (cellNum > 0 && rowNum > 0 && schema[rowNum - 1][cellNum - 1] === 100) {
-            danger++;
-        }
-        if (rowNum > 0 && schema[rowNum - 1][cellNum] === 100) {
-            danger++;
-        }
-        if (rowNum > 0 && schema[rowNum].length - 1 > cellNum && schema[rowNum - 1][cellNum + 1] === 100) {
-            danger++;
-        }
-        if (schema[rowNum].length - 1 > cellNum && schema[rowNum][cellNum + 1] === 100) {
-            danger++;
-        }
-        if (cellNum && schema.length - 1 > rowNum && schema[rowNum + 1][cellNum - 1] === 100) {
-            danger++;
-        }
-        if (schema.length - 1 > rowNum && schema[rowNum + 1][cellNum] === 100) {
-            danger++;
-        }
-        if (schema[rowNum].length - 1 > cellNum && schema.length - 1 > rowNum && schema[rowNum + 1][cellNum + 1] === 100) {
-            danger++;
-        }
+        return [
+            (cellNum > 0 && schema[rowNum][cellNum - 1] === 100),
+            (cellNum > 0 && rowNum > 0 && schema[rowNum - 1][cellNum - 1] === 100),
+            (rowNum > 0 && schema[rowNum - 1][cellNum] === 100),
+            (rowNum > 0 && schema[rowNum].length - 1 > cellNum && schema[rowNum - 1][cellNum + 1] === 100),
+            (schema[rowNum].length - 1 > cellNum && schema[rowNum][cellNum + 1] === 100),
+            (cellNum && schema.length - 1 > rowNum && schema[rowNum + 1][cellNum - 1] === 100),
+            (schema.length - 1 > rowNum && schema[rowNum + 1][cellNum] === 100),
+            (schema[rowNum].length - 1 > cellNum && schema.length - 1 > rowNum && schema[rowNum + 1][cellNum + 1] === 100)
+        ].filter(Boolean).length
     } else {
-        danger = 100;
+        return '100';
     }
-    return danger;
 }
