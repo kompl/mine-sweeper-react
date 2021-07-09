@@ -2,8 +2,8 @@ import "./App.css";
 import React, {useState} from "react";
 
 
-import {SettingsPanel} from "./components/mineSweeper/settingsPanel/settingsPanel.js";
-import {GameMenu} from "./components/mineSweeper/gameMenu/gameMenu";
+import {SettingsPanel} from "../settingsPanel/settingsPanel.js";
+import {GameMenu} from "../gameMenu/gameMenu";
 
 
 function App() {

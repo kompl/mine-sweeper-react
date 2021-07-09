@@ -1,5 +1,6 @@
 import React, {useMemo, useState} from "react";
 import "./board.css";
+import {Modal} from "../modal/Modal";
 
 
 const dangerAreaProportionChoices = {
@@ -50,6 +51,7 @@ function Tile(props) {
             onClick={() => setTurned(true)}
         >
             {isTurned && danger !== '100' ? danger : ""}
+            {isTurned && danger === '100' ? <Modal> BOOM! </Modal> : ""}
         </td>
     );
 }
