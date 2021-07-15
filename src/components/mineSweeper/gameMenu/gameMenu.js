@@ -1,6 +1,7 @@
 import "./gameMenu.css";
 import {Board} from "../board/board";
 import {generateId} from "../../../utils/idGenerator";
+import {EventBus} from "../../../utils/eventBus";
 
 
 export function GameMenu(props) {
@@ -14,6 +15,7 @@ export function GameMenu(props) {
             </div>
         )
     }
+    EventBus.subscribe('needRebuildGame', (needRebuild) => {if (needRebuild) rebuildGame()})
     return (
         <div className="gameMenu">
             <span onClick={() => rebuildGame()}>{props.label}</span>
